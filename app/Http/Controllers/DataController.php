@@ -19,14 +19,19 @@ class DataController extends Controller
     }
     public function storeMasterKamar(Request $request)
     {
-        MasterKamar::create([
-            'nama_kamar' => $request->nama_kamar,
-            'deskripsi_kamar' => $request->deskripsi_kamar,
-            'harga_kamar' => $request->harga_kamar,
-            'fasilitas' => $request->fasilitas,
-            'stok' => $request->stok
-        ]);
-        return redirect('/kamar');
+        try {
+            MasterKamar::create([
+                'nama_kamar' => $request->nama_kamar,
+                'deskripsi_kamar' => $request->deskripsi_kamar,
+                'harga_kamar' => $request->harga_kamar,
+                'fasilitas' => $request->fasilitas,
+                'stok' => $request->stok
+            ]);
+            return redirect()->route('kamar.index')->with('success', 'Berhasil Menambahkan Data Kamar');
+        } catch (\Exception $e) {
+
+            return redirect()->route('kamar.add')->with('error', 'Gagal Menambahkan Data Kamar: ' . $e->getMessage());
+        }
     }
     public function editMasterKamar($id_kamar)
     {
@@ -37,23 +42,27 @@ class DataController extends Controller
     {
         $kamar = MasterKamar::where('id_kamar', $id_kamar)->first();
         // return $kamar;
-        if (!$kamar) {
-            return redirect('/kamar');
+        try {
+            if (!$kamar) {
+                return redirect('/kamar');
+            }
+            $kamar->where('id_kamar', $id_kamar)->update([
+                'nama_kamar' => $request->nama_kamar,
+                'deskripsi_kamar' => $request->deskripsi_kamar,
+                'harga_kamar' => $request->harga_kamar,
+                'fasilitas' => $request->fasilitas,
+                'stok' => $request->stok
+            ]);
+            return redirect()->route('kamar.index')->with('update', 'Berhasil Mengubah Data Kamar');
+        } catch (\Exception $e) {
+            return redirect()->route('kamar.edit', $kamar->id_kamar)->with('error', 'Gagal Menambahkan Data Kamar: ' . $e->getMessage());
         }
-        $kamar->where('id_kamar', $id_kamar)->update([
-            'nama_kamar' => $request->nama_kamar,
-            'deskripsi_kamar' => $request->deskripsi_kamar,
-            'harga_kamar' => $request->harga_kamar,
-            'fasilitas' => $request->fasilitas,
-            'stok' => $request->stok
-        ]);
-        return redirect('/kamar');
     }
     public function deleteMasterKamar($id_kamar)
     {
         $kamar = MasterKamar::where('id_kamar', $id_kamar)->delete();
         // $kamar->delete();
-        return redirect('/kamar');
+        return redirect()->route('kamar.index')->with('delete', 'Berhasil Menghapus Data Kamar');
     }
 
     public function Dashboard()

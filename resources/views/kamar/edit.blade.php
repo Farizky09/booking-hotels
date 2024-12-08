@@ -24,7 +24,8 @@
                         <label for="harga_kamar" class="form-label">Harga Per Malam</label>
                         <input type="text" class="form-control" id="harga_kamar" name="formatted_harga"
                             value="{{ $kamar->harga_kamar }}" placeholder="Masukkan Harga Per Malam" required>
-                        <input type="hidden" id="harga_kamar_unformatted" name="harga_kamar" value="{{ $kamar->harga_kamar }}">
+                        <input type="hidden" id="harga_kamar_unformatted" name="harga_kamar"
+                            value="{{ $kamar->harga_kamar }}">
                     </div>
                     <div class="mb-3">
                         <label for="fasilitas" class="form-label">Fasilitas</label>
@@ -47,47 +48,24 @@
 @endsection
 
 @push('script')
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
-        // const hargaInput = document.getElementById('harga_kamar');
-        // const hargaInputHidden = document.getElementById('harga_kamar_unformatted');
-
-        // // Fungsi untuk format ke Rupiah
-        // function formatRupiah(value) {
-        //     let numberString = value.replace(/[^,\d]/g, ''); // Hanya angka
-        //     let split = numberString.split(',');
-        //     let sisa = split[0].length % 3;
-        //     let rupiah = split[0].substr(0, sisa);
-        //     let ribuan = split[0].substr(sisa).match(/\d{3}/gi);
-
-        //     if (ribuan) {
-        //         let separator = sisa ? '.' : '';
-        //         rupiah += separator + ribuan.join('.');
-        //     }
-        //     return 'Rp ' + (split[1] !== undefined ? rupiah + ',' + split[1] : rupiah);
-        // }
-
-        // // Event Listener untuk Input
-        // hargaInput.addEventListener('input', function(e) {
-        //     let value = e.target.value.replace(/[^,\d]/g, ''); // Hapus karakter non-angka
-        //     if (!value) {
-        //         hargaInputHidden.value = '';
-        //         return (e.target.value = '');
-        //     }
-
-        //     // Format dan set ke input tampilan
-        //     hargaInput.value = formatRupiah(value);
-
-        //     // Set nilai asli ke input hidden
-        //     hargaInputHidden.value = value;
-        // });
-
-        // // Optional: Menangani saat input kehilangan fokus
-        // hargaInput.addEventListener('blur', function(e) {
-        //     if (e.target.value) {
-        //         // Jika ada nilai, format ulang untuk memastikan tidak ada koma di akhir
-        //         let value = e.target.value.replace(/[^,\d]/g, '');
-        //         hargaInput.value = formatRupiah(value);
-        //     }
-        // });
+        document.addEventListener("DOMContentLoaded", function() {
+            @if (session('update'))
+                Swal.fire({
+                    title: 'Berhasil!',
+                    text: "{{ session('update') }}",
+                    icon: 'success',
+                    confirmButtonText: 'OK'
+                });
+            @elseif (session('error'))
+                Swal.fire({
+                    title: 'Gagal!',
+                    text: "{{ session('error') }}",
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                });
+            @endif
+        });
     </script>
 @endpush

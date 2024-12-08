@@ -46,6 +46,26 @@
 @endsection
 
 @push('script')
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            @if (session('success'))
+                Swal.fire({
+                    title: 'Berhasil!',
+                    text: "{{ session('success') }}",
+                    icon: 'success',
+                    confirmButtonText: 'OK'
+                });
+            @elseif (session('error'))
+                Swal.fire({
+                    title: 'Gagal!',
+                    text: "{{ session('error') }}",
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                });
+            @endif
+        });
+    </script>
     {{-- <script>
         const hargaInput = document.getElementById('harga_kamar');
         const hargaInputHidden = document.getElementById('harga_kamar_unformatted');

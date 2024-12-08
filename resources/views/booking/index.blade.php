@@ -42,6 +42,10 @@
     {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"> --}}
 @endpush
 @section('main')
+    @php
+        $date = \Carbon\Carbon::now()->format('Ymd');
+        $level = Auth::user()->role;
+    @endphp
     <div class="nk-content ">
         <div class="container-fluid">
             <div class="nk-content-inner">
@@ -52,21 +56,21 @@
                                 <div class="nk-block-head-content">
                                     <h4 class="nk-block-title">Booking</h4>
                                 </div>
-                                <div class="nk-block-head-content">
-                                    <a href="{{ route('booking.add') }}"
-                                        class="btn btn-primary d-none d-md-inline-flex float-right"><em
-                                            class="icon ni ni-plus"></em><span>Tambah</span></a>
-                                </div>
+                                @if ($level != 1)
+                                    <div class="nk-block-head-content">
+                                        <a href="{{ route('booking.add') }}"
+                                            class="btn btn-primary d-none d-md-inline-flex float-right"><em
+                                                class="icon ni ni-plus"></em><span>Tambah</span></a>
+                                    </div>
+                                @endif
+
                             </div>
                         </div><!-- .nk-block-head -->
                         <div class="nk-block">
                             <div class="card card-bordered card-preview p-5">
                                 <div class="card-inner">
                                     <div class="table-container">
-                                        @php
-                                            $date = \Carbon\Carbon::now()->format('Ymd');
-                                            $level = Auth::user()->role;
-                                        @endphp
+
                                         <table id="dataTable" class="table table-hover">
                                             <thead>
                                                 <tr>
@@ -207,6 +211,22 @@
                 });
             @endif
         });
+        @if (session('cancel'))
+            Swal.fire({
+                title: 'Berhasil!',
+                text: "{{ session('cancel') }}",
+                icon: 'success',
+                confirmButtonText: 'OK'
+            });
+        @endif
+        @if (session('done'))
+            Swal.fire({
+                title: 'Berhasil!',
+                text: "{{ session('done') }}",
+                icon: 'success',
+                confirmButtonText: 'OK'
+            });
+        @endif
     </script>
 
     {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script> --}}

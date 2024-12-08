@@ -68,13 +68,13 @@ class TransaksiController extends Controller
         Booking::where('id_booking', $id_booking)->update([
             'status' => 'cancel'
         ]);
-        return redirect('/booking');
+        return redirect()->route('booking.index')->with('cancel', 'Yahhh dicancel...');
     }
     public function doneBooking($id_booking)
     {
         Booking::where('id_booking', $id_booking)->update([
             'status' => 'done'
         ]);
-        return redirect('/booking');
+        return redirect()->route('booking.index')->with('done', 'Pemesanan sudah selesai..');
     }
 }

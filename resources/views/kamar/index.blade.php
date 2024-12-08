@@ -68,10 +68,38 @@
     </div>
 @endsection
 @push('scripts')
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         $(document).ready(function() {
             $('#dataTable').DataTable();
         });
+    </script>
+    <script>
+        @if (session('success'))
+            Swal.fire({
+                title: 'Berhasil!',
+                text: "{{ session('success') }}",
+                icon: 'success',
+                confirmButtonText: 'OK'
+            });
+        @endif
+        @if (session('update'))
+            Swal.fire({
+                title: 'Berhasil!',
+                text: "{{ session('update') }}",
+                icon: 'success',
+                confirmButtonText: 'OK'
+            });
+        @endif
+        @if (session('delete'))
+            Swal.fire({
+                title: 'Berhasil!',
+                text: "{{ session('delete') }}",
+                icon: 'success',
+                confirmButtonText: 'OK'
+            });
+        @endif
+       
     </script>
 
     {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script> --}}
