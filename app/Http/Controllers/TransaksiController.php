@@ -58,18 +58,10 @@ class TransaksiController extends Controller
                 'status' => $status,
                 'metode_pembayaran' => $request->metode_pembayaran
             ]);
+            return redirect()->route('booking.index')->with('success', 'Pemesanan berhasil disimpan.');
         } else {
-            return redirect('/booking')->with('error', 'Jumlah kamar tidak tersedia');
-            // dd($sumUnavailable, $allJumlahKamar, $getAvailable);
+            return redirect()->route('booking.add')->with('error', 'Jumlah kamar tidak tersedia');
         }
-        // $id = str_increment('id');
-
-        // $kamar = MasterKamar::where('id_kamar', $id_kamar)->first();
-        // $stok_berkurang = $kamar->stok - $jumlah_kamar;
-        // MasterKamar::where('id_kamar', $id_kamar)->update([
-        //     'stok' => $stok_berkurang
-        // ]);
-        return redirect('/booking');
     }
     public function cancelBooking($id_booking)
     {

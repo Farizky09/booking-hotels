@@ -187,6 +187,7 @@
     </div>
 @endsection
 @push('scripts')
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const kodeKamar = document.getElementById("kode_kamar");
@@ -247,6 +248,25 @@
             tanggalCheckin.addEventListener("change", calculateTotal);
             tanggalCheckout.addEventListener("change", calculateTotal);
             nominalBayar.addEventListener("input", calculateChange);
+        });
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            @if (session('success'))
+                Swal.fire({
+                    title: 'Berhasil!',
+                    text: "{{ session('success') }}",
+                    icon: 'success',
+                    confirmButtonText: 'OK'
+                });
+            @elseif (session('error'))
+                Swal.fire({
+                    title: 'Gagal!',
+                    text: "{{ session('error') }}",
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                });
+            @endif
         });
     </script>
 @endpush

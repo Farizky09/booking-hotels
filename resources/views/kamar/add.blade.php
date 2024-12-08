@@ -21,9 +21,9 @@
                     </div>
                     <div class="mb-3">
                         <label for="harga_kamar" class="form-label">Harga Per Malam</label>
-                        <input type="text" class="form-control" id="harga_kamar" name="formatted_harga"
+                        <input type="text" class="form-control" id="harga_kamar" name="harga_kamar"
                             placeholder="Masukkan Harga Per Malam" required>
-                        <input type="hidden" id="harga_kamar_unformatted" name="harga_kamar">
+                        {{-- <input type="number" id="harga_kamar_unformatted" name="harga_kamar"> --}}
                     </div>
                     <div class="mb-3">
                         <label for="fasilitas" class="form-label">Fasilitas</label>
@@ -46,7 +46,7 @@
 @endsection
 
 @push('script')
-    <script>
+    {{-- <script>
         const hargaInput = document.getElementById('harga_kamar');
         const hargaInputHidden = document.getElementById('harga_kamar_unformatted');
 
@@ -88,5 +88,5 @@
                 hargaInput.value = formatRupiah(value);
             }
         });
-    </script>
+    </script> --}}
 @endpush
