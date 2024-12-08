@@ -67,9 +67,9 @@
 
                                                 <!-- Guest -->
                                                 <div class="col-md-6">
-                                                    <label for="guest" class="form-label">Guest</label>
+                                                    <label for="guest" class="form-label">Jumlah Tamu</label>
                                                     <input type="text" class="form-control" id="guest" name="guest"
-                                                        placeholder="Masukkan Nama Guest" required>
+                                                        placeholder="Masukkan Jumlah Tamu" required>
                                                 </div>
                                             </div>
                                         </div>
