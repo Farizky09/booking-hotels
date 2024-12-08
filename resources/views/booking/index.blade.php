@@ -76,12 +76,17 @@
                                                     <th>Jumlah</th>
                                                     <th>Tanggal Check In</th>
                                                     <th>Tanggal Check Out</th>
-                                                    @if ($level == 1)
+                                                    @if ($level != 0)
+                                                        <th>Customer</th>
+                                                    @endif
+                                                    @if ($level == 0)
                                                         <th>Customer</th>
                                                     @endif
                                                     <th>Status</th>
                                                     <th>Pembayaran</th>
                                                     <th>Action</th>
+
+
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -95,50 +100,65 @@
                                                         <td>{{ $item->tanggal_checkin }}</td>
                                                         <td>{{ $item->tanggal_checkout }}</td>
 
-                                                        @if ($level == 1)
+                                                        @if ($level != 0)
+                                                            <td>{{ $item->name }}</td>
+                                                        @endif
+                                                        @if ($level == 0)
                                                             <td>{{ $item->name }}</td>
                                                         @endif
 
                                                         <td>{{ $item->status }}</td>
                                                         <td>{{ $item->metode_pembayaran }}</td>
-                                                        <td>
-                                                            @if ($level == 0)
+                                                        @if ($level != 0)
+                                                            <td>
                                                                 @if ($item->status == 'onProgress' && \Carbon\Carbon::parse($item->tanggal_checkin)->format('Ymd') > $date)
                                                                     <form
                                                                         action="{{ route('booking.cancel', $item->id_booking) }}"
                                                                         method="POST">
                                                                         @csrf
                                                                         <button type="submit"
-                                                                            class="btn btn-primary">Cancel</button>
+                                                                            class="btn btn-danger">Cancel</button>
                                                                     </form>
                                                                 @else
                                                                     -
                                                                 @endif
-                                                            @else
                                                                 @if ($item->status == 'onProgress')
                                                                     <form
                                                                         action="{{ route('booking.done', $item->id_booking) }}"
                                                                         method="POST">
                                                                         @csrf
                                                                         <button type="submit"
-                                                                            class="btn btn-primary">Selesai</button>
+                                                                            class="btn btn-success">Selesai</button>
                                                                     </form>
                                                                 @else
                                                                     -
-                                                                    vro
-
                                                                 @endif
-                                                            @endif
+                                                            </td>
+                                                        @endif
+                                                        @if ($level == 0)
+                                                            <td>
+                                                                @if ($item->status == 'onProgress' && \Carbon\Carbon::parse($item->tanggal_checkin)->format('Ymd') > $date)
+                                                                    <form
+                                                                        action="{{ route('booking.cancel', $item->id_booking) }}"
+                                                                        method="POST">
+                                                                        @csrf
+                                                                        <button type="submit"
+                                                                            class="btn btn-danger">Cancel</button>
+                                                                    </form>
+                                                                @else
+                                                                    -
+                                                                @endif
+
+                                                            </td>
+                                                        @endif
 
 
-
-
-                                                        </td>
                                                     </tr>
                                                 @endforeach
                                             </tbody>
                                         </table>
                                     </div>
+
                                 </div>
                             </div><!-- .card-preview -->
                         </div><!-- .nk-block -->
