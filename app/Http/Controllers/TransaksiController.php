@@ -42,8 +42,11 @@ class TransaksiController extends Controller
             ->where('status', 'onProgress')
             ->sum('jumlah');
         $allJumlahKamar = MasterKamar::where('id_kamar', $id_kamar)->first();
-        $getAvailable = $allJumlahKamar->jumlah_kamar - $sumUnavailable;
-        if ($getAvailable <= $jumlah_kamar) {
+        // return $allJumlahKamar->stok;
+        $getAvailable = $allJumlahKamar->stok - $sumUnavailable;
+        // return $getAvailable;
+
+        if ($getAvailable >= $jumlah_kamar) {
             Booking::create([
                 'kd_pemesanan' => $request->kd_pemesanan,
                 'guest' => $request->guest,
@@ -57,6 +60,7 @@ class TransaksiController extends Controller
             ]);
         } else {
             return redirect('/booking')->with('error', 'Jumlah kamar tidak tersedia');
+            // dd($sumUnavailable, $allJumlahKamar, $getAvailable);
         }
         // $id = str_increment('id');
 

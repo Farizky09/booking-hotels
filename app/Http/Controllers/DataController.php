@@ -68,6 +68,7 @@ class DataController extends Controller
                 ->sum('jumlah');
             $item->sisa = $item->stok - $item->booking;
         }
+
         // return $booking;
 
 
