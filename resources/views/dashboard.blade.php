@@ -11,6 +11,7 @@
             @foreach ($kamar as $item)
                 <div class="col-md-4 mb-4">
                     <div class="card shadow-sm">
+                        <img src="{{ $item->filename != null ? public_path() . '/upload/foto_kamar/' . $item->filename : 'https://images.pexels.com/photos/3201763/pexels-photo-3201763.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' }}" class="card-img-top" alt="{{ $item->filename != null ? public_path() . '/upload/foto_kamar/' . $item->filename : 'https://images.pexels.com/photos/3201763/pexels-photo-3201763.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'}}">
                         <div class="card-body">
                             <h5 class="card-title">{{ $item->nama_kamar }}</h5>
                             <p class="card-text">

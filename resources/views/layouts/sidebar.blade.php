@@ -30,7 +30,7 @@
         <li class="menu-item">
             <a href="{{ route('booking.index') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-book"></i>
-                <div class="text-truncate">Transaksi</div>
+                <div class="text-truncate">Riwayat Pemesanan</div>
             </a>
         </li>
 

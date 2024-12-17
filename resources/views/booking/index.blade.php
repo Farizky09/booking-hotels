@@ -54,16 +54,8 @@
                         <div class="nk-block-head nk-block-head-sm">
                             <div class="nk-block-between">
                                 <div class="nk-block-head-content">
-                                    <h4 class="nk-block-title">Booking</h4>
+                                    <h4 class="nk-block-title">Riwayat Pemesanan</h4>
                                 </div>
-                                @if ($level != 1)
-                                    <div class="nk-block-head-content">
-                                        <a href="{{ route('booking.add') }}"
-                                            class="btn btn-primary d-none d-md-inline-flex float-right"><em
-                                                class="icon ni ni-plus"></em><span>Tambah</span></a>
-                                    </div>
-                                @endif
-
                             </div>
                         </div><!-- .nk-block-head -->
                         <div class="nk-block">
@@ -163,6 +155,15 @@
                                         </table>
                                     </div>
 
+                                    <div class="mt-3">
+                                        @if ($level != 1)
+                                            <div class="nk-block-head-content">
+                                                <a href="{{ route('booking.add') }}"
+                                                    class="btn btn-primary d-none d-md-inline-flex float-right"><em
+                                                        class="icon ni ni-plus"></em><span>Tambah</span></a>
+                                            </div>
+                                        @endif
+                                    </div>
                                 </div>
                             </div><!-- .card-preview -->
                         </div><!-- .nk-block -->

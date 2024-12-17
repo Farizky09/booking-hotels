@@ -7,7 +7,7 @@
                 <h4>Form Add Kamar</h4>
             </div>
             <div class="card-body">
-                <form action="{{ route('kamar.store') }}" method="POST">
+                <form action="{{ route('kamar.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="mb-3">
                         <label for="nama_kamar" class="form-label">Nama Kamar</label>
@@ -34,6 +34,11 @@
                         <label for="stok" class="form-label">Stok</label>
                         <input type="number" class="form-control" id="stok" name="stok"
                             placeholder="Masukkan Stok Tersedia" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="foto_kamar" class="form-label">Foto Kamar</label>
+                        <input type="file" class="form-control" id="foto_kamar" name="foto_kamar"
+                            placeholder="Masukkan foto_kamar Tersedia" required>
                     </div>
                     <div class="text-end">
                         <button type="submit" class="btn btn-primary">Simpan</button>
