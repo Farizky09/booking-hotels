@@ -24,7 +24,11 @@
     <link rel="stylesheet" href="{{ asset('assets/vendor/css/core.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendor/css/theme-default.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/demo.css') }}">
+    {{-- <link rel="preconnect" href="https://fonts.bunny.net">
+    <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
+    <!-- Scripts -->
+    @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
     @stack('style')
 </head>
 
@@ -96,7 +100,9 @@
     <script src="{{ asset('js/stisla.js') }}"></script> --}}
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- Bootstrap Bundle -->
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <!-- DataTables -->
     {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script> --}}
@@ -116,12 +122,12 @@
     <script>
         $(".accordion-button").on('click', function(e) {
             console.log($("#collapseTwo").attr('class'));
-            
-            if($(".accordion-collapse").hasClass('show')) {
+
+            if ($(".accordion-collapse").hasClass('show')) {
                 console.log('test');
             } else {
                 console.log('123');
-                
+
             }
         })
     </script>
